@@ -290,8 +290,7 @@ do
                 return Module
             end
         end
-        local Object, Method, ArgPattern =
-            stringmatch(Value, "([" .. VarPrefix .. "%w" .. VarPostfix .. "%d]+):(%w+)(%b());$")
+        local Object, Method, ArgPattern = stringmatch(Value, "([" .. VarPrefix .. "%w" .. VarPostfix .. "%d]+):(%w+)(%b());$")
         if Object and Method and ArgPattern then
             local Method = stringlower(Method)
             local IsAVariable = stringmatch(Object, VarPrefix .. "(%w+)" .. VarPostfix .. "%d+")
@@ -359,11 +358,9 @@ genv.decompile = (function(Script, ...)
         local isModuleScript = IsA(Script, "ModuleScript")
         if (isModuleScript or IsA(Script, "LocalScript")) then
             local Success, Globals
-            taskspawn(
-                function()
-                    Success, Globals = pcall(((isModuleScript and require) or _getsenv), Script)
-                end
-            )
+            taskspawn(function()
+                Success, Globals = pcall(((isModuleScript and require) or _getsenv), Script)
+            end)
             local Yielded = 0
             repeat
                 taskwait(1)
