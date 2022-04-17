@@ -7,6 +7,8 @@ if http0001 then
     loadstring(http0002)()
 end
 
+local RunService = game:GetService("RunService")
+------------------------------------------------
 local Tablef = {}
 local OldProxy = nil;
 OldProxy = hookfunction(getrenv().newproxy, function(...)
@@ -14,6 +16,12 @@ OldProxy = hookfunction(getrenv().newproxy, function(...)
     table.insert(Tablef, proxy)
     
     return proxy
+end)
+
+RunService.Stepped:Connect(function()
+    for i,v in pairs(Tablef) do
+        if v == nil then break end
+    end
 end)
 
 local _decompile = assert(decompile or syn_decompile)
