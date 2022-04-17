@@ -1,3 +1,15 @@
+--assert(syn, "unsupported exploit")
+
+-- some antidex bypass
+local Tablef = {}
+local OldProxy = nil;
+OldProxy = hookfunction(getrenv().newproxy, function(...)
+    local proxy = OldProxy(...)
+    table.insert(Tablef, proxy)
+    
+    return proxy
+end)
+
 local _decompile = assert(decompile or syn_decompile)
 local _getscriptclosure = assert(getscriptclosure)
 local _getrenv = assert(getrenv or syn_getrenv)
