@@ -1,29 +1,5 @@
 assert(syn, "unsupported exploit")
 
--- some antidex bypass
-local http0001,http0002 = pcall(game.HttpGet, game, 'https://raw.githubusercontent.com/soul94/AdvancedDecompile/main/AntiDex00000.lua')
-
-if http0001 then
-    loadstring(http0002)()
-end
-
-local RunService = game:GetService("RunService")
-------------------------------------------------
-local Tablef = {}
-local OldProxy = nil;
-OldProxy = hookfunction(getrenv().newproxy, function(...)
-    local proxy = OldProxy(...)
-    table.insert(Tablef, proxy)
-    
-    return proxy
-end)
-
-RunService.Stepped:Connect(function()
-    for i,v in pairs(Tablef) do
-        if v == nil then break end
-    end
-end)
-
 local _decompile = assert(decompile or syn_decompile)
 local _getscriptclosure = assert(getscriptclosure)
 local _getrenv = assert(getrenv or syn_getrenv)
