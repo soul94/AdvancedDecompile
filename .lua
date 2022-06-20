@@ -16,6 +16,7 @@ local stringlower = string.lower
 local stringgmatch = string.gmatch
 local stringgsub = string.gsub
 local stringsub = string.sub
+local stringformat = string.format
 local taskspawn = task.spawn
 local taskwait = task.wait
 local tableclear = table.clear
@@ -474,7 +475,7 @@ genv.decompile = (function(Script, ...)
                             end
                         end
                     end
-                    return Source
+                    return stringformat('-- Script Hash: %s\n', tostring(getscripthash(Script))) .. Source
                 end
             end
         end
