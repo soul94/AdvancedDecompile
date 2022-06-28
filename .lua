@@ -1,3 +1,8 @@
+--[[
+    - This project is for synapse x only
+    - Probably adding support for other exploits soon
+]]
+
 assert(syn, "unsupported exploit")
 
 local _decompile = assert(decompile or syn_decompile)
